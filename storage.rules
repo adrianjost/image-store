@@ -1,0 +1,21 @@
+rules_version = '2';
+
+function isAdmin() {
+  return request.auth.token.email == "github@adrianjost.dev"
+}
+
+function isImage() {
+  return request.resource.contentType.matches('image/.*')
+}
+
+function isWithinFileSizeLimit() {
+  return request.resource.size < 5 * 1024 * 1024
+}
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read: if false;
+      allow write: if isAdmin() && isImage() && isWithinFileSizeLimit();
+    }
+  }
+}
