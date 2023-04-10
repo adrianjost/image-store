@@ -1,0 +1,215 @@
+/* configuration */
+:root {
+  --font-family: system-ui, -apple-system, "Segoe UI", "Roboto", "Ubuntu",
+    "Cantarell", "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  --font-size: 16px;
+  --line-height: 1.5;
+  --font-weight: 400;
+
+  --color-background: #fff;
+  --color-text: #283040;
+  --color-link: #1e88e5;
+  --color-link-hover: #1e88e5;
+  --color-link-hover-background: #0e64af21;
+  --color-button: #1e88e5;
+  --color-button-background: #0e64af21;
+  --color-button-hover: #1e88e5;
+  --color-button-hover-background: #0e64af67;
+  --color-divider: #596b78;
+  --color-button-muted: #596b78;
+
+  --divider-width: 1px;
+
+  --typography-spacing-vertical: 0.5em;
+  --block-spacing-vertical: 1.5em;
+
+  --rounding: 0.5rem;
+}
+
+/* dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #11191f;
+    --color-text: #edf0f3;
+    --color-link: #1e88e5;
+    --color-link-hover: #1e88e5;
+    --color-link-hover-background: #0e64af21;
+    --color-button: #1e88e5;
+    --color-button-background: #0e64af21;
+    --color-button-hover: #1e88e5;
+    --color-button-hover-background: #0e64af96;
+    --color-divider: #313b42;
+    --color-button-muted: #a1c1d9;
+    --divider-width: 2px;
+  }
+  img {
+    filter: brightness(0.8);
+  }
+}
+
+/* reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* screen size typo scale */
+@media (min-width: 576px) {
+  :root {
+    --font-size: 17px;
+  }
+}
+@media (min-width: 768px) {
+  :root {
+    --font-size: 18px;
+  }
+}
+@media (min-width: 992px) {
+  :root {
+    --font-size: 19px;
+  }
+}
+@media (min-width: 1200px) {
+  :root {
+    --font-size: 20px;
+  }
+}
+
+/* styles */
+
+html {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  font-weight: var(--font-weight);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  font-weight: var(--font-weight);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  margin: 0;
+  padding: 0;
+}
+
+nav,
+main,
+footer {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Headlines */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size);
+  margin-top: var(--block-spacing-vertical);
+  margin-bottom: var(--typography-spacing-vertical);
+  line-height: 125%;
+}
+h1 {
+  --font-size: 2.25rem;
+}
+h2 {
+  --font-size: 1.75rem;
+}
+h3 {
+  --font-size: 1.25rem;
+}
+h4 {
+  --font-size: 1.125rem;
+}
+h5 {
+  --font-size: 1rem;
+  font-weight: 900;
+}
+h6 {
+  --font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Links */
+a {
+  color: var(--color-link);
+  transition: color 0.2s ease;
+  text-decoration: none;
+  font-weight: 600;
+}
+a:hover,
+a:focus-visible {
+  color: var(--color-link-hover);
+  background-color: var(--color-link-hover-background);
+}
+
+/* Buttons */
+button {
+  color: var(--color-button);
+  transition: background-color 0.2s ease;
+  font-weight: 600;
+  border: 0;
+  padding: 0.5rem 1rem;
+  border-radius: var(--rounding);
+  background-color: var(--color-button-background);
+  margin: 0.5rem;
+}
+button:hover,
+button:focus-visible {
+  color: var(--color-button-hover);
+  background-color: var(--color-button-hover-background);
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: var(--block-spacing-vertical);
+}
+
+/* Utilities */
+.link-muted {
+  color: var(--color-button-muted);
+  text-decoration: none;
+}
+
+.sr-only {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important;
+}
+
+.dropzone {
+  width: 100%;
+  height: 300px;
+  border: 2px dashed var(--color-divider);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: var(--color-button-background);
+  border-radius: var(--rounding);
+}
+.dropzone.dragover,
+input[type="file"]:focus ~ .dropzone {
+  color: var(--color-button-hover);
+  background-color: var(--color-button-hover-background);
+}

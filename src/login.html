@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <!-- Import the Firebase SDKs as modules -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
+      import {
+        getAuth,
+        signInWithPopup,
+        GoogleAuthProvider,
+        GithubAuthProvider,
+      } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js";
+
+      // Your Firebase configuration goes here
+      const firebaseConfig = {
+        apiKey: "AIzaSyDtJ8PxK4Yu9SAj6eCTUO81Ir63NHAUX5A",
+        authDomain: "image-store-e46bc.firebaseapp.com",
+        projectId: "image-store-e46bc",
+        storageBucket: "image-store-e46bc.appspot.com",
+        messagingSenderId: "402884106405",
+        appId: "1:402884106405:web:35a951ccd40ab1d7a4154c",
+      };
+
+      // Initialize Firebase
+      initializeApp(firebaseConfig);
+      // Sign in with Google
+      const googleButton = document.getElementById("googleButton");
+      const googleProvider = new GoogleAuthProvider();
+      googleButton.addEventListener("click", () => {
+        signInWithPopup(getAuth(), googleProvider)
+          .then(() => {
+            console.log("Signed in with Google successfully!");
+            window.location.href = "/index.html";
+          })
+          .catch((error) => {
+            console.error("Error signing in with Google:", error);
+            alert("Error signing in with Google. Please try again.");
+          });
+      });
+
+      // Sign in with GitHub
+      const githubButton = document.getElementById("githubButton");
+      const githubProvider = new GithubAuthProvider();
+      githubButton.addEventListener("click", () => {
+        signInWithPopup(getAuth(), githubProvider)
+          .then(() => {
+            console.log("Signed in with GitHub successfully!");
+            window.location.href = "/index.html";
+          })
+          .catch((error) => {
+            console.error("Error signing in with GitHub:", error);
+            alert("Error signing in with GitHub. Please try again.");
+          });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>My App - Login</h1>
+
+    <p>Sign in with:</p>
+    <button id="googleButton" type="button">Google</button>
+    <button id="githubButton" type="button">GitHub</button>
+  </body>
+</html>
