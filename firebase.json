@@ -5,7 +5,8 @@
     "rewrites": [
       {
         "source": "/img/**",
-        "function": "fetchimage"
+        "function": "fetchimage",
+        "region": "europe-west1"
       },
       {
         "source": "**",
