@@ -47,10 +47,18 @@
       // Upload a file to Firebase Storage when it's dropped onto the page
       const upload = (file) => {
         const fileExtension = file.name.split(".").pop();
-        const uploadID = window.crypto
-          .getRandomValues(new Uint32Array(32))
-          .join("")
-          .slice(0, 32);
+        const now = new Date();
+        // format: yyyyMMddHHmmss-random
+        // with 2 digit month, day, hour, minute, second
+        // and a random 8 character string
+        const uploadID = `${now.getFullYear()}${String(
+          now.getMonth() + 1
+        ).padStart(2, "0")}${String(now.getDate()).padStart(2, "0")}${String(
+          now.getHours()
+        ).padStart(2, "0")}${String(now.getMinutes()).padStart(2, "0")}${String(
+          now.getSeconds()
+        ).padStart(2, "0")}-${Math.random().toString(36).substr(2, 8)}`;
+
         const uploadName = `${uploadID}.${fileExtension}`;
         const storageRef = ref(storage, `images/${uploadName}`);
         uploadBytes(storageRef, file)
