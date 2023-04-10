@@ -31,7 +31,8 @@ exports.fetchimage = functions
       }
 
       const [metadata] = await bucketFile.getMetadata();
-      res.set("Cache-Control", "public, max-age=300, s-maxage=600");
+      // infinite cache for images
+      res.set("Cache-Control", "public, max-age=31536000, s-maxage=31536000");
       res.set("Content-Type", metadata.contentType);
 
       await new Promise((resolve) => {
