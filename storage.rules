@@ -1,7 +1,8 @@
 rules_version = '2';
 
 function isAdmin() {
-  return request.auth.token.email == "github@adrianjost.dev"
+  return request.auth.uid == "G4oTvjofyEZHbOLaCGXRkVzh88U2" // Google SSO
+    || request.auth.uid == "WOkCvd8TDPSvmTgaWqDlkjXE0io2";  // GitHub SSO
 }
 
 function isImage() {
