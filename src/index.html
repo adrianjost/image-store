@@ -85,9 +85,28 @@
               navigator.clipboard.writeText(cdnURL);
             });
 
+            // Add Copy HTML
+            const copyHTMLButton = document.createElement("button");
+            copyHTMLButton.textContent = "Copy HTML";
+            let imageWidth = "";
+            let imageHeight = "";
+            copyHTMLButton.addEventListener("click", () => {
+              const figureHTML = `<figure>\n  <img\n    alt="TODO: write alt description"\n    src="${cdnURL}"\n    width="${imageWidth}"\n    height="${imageHeight}"\n  />\n  <figcaption>\n    TODO: write caption\n  </figcaption>\n</figure>`;
+              navigator.clipboard.writeText(figureHTML);
+            });
+            // load image native dimensions for html copy
+            const imageObjectURL = URL.createObjectURL(file);
+            const img = new Image();
+            img.onload = function () {
+              imageWidth = img.width;
+              imageHeight = img.height;
+              URL.revokeObjectURL(img.src);
+            };
+            img.src = imageObjectURL;
+
             // Add new upload to list of uploads
             const uploadNode = document.createElement("li");
-            uploadNode.append(linkNode, copyButton);
+            uploadNode.append(linkNode, copyButton, copyHTMLButton);
             document.getElementById("uploads").appendChild(uploadNode);
           })
           .catch((error) => {
