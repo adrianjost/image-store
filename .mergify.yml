@@ -1,10 +1,8 @@
 # GENERATED CONTENT
 # remove repo from adrianjost/.github/synced/workflows/generator.js before editing
 queue_rules:
-  - name: duplicated branchProtection from auto merge when ready to merge label is
-      set
+  - name: auto merge when ready to merge label is set
     queue_conditions:
-      - author~=dependabot(-preview)?\[bot\]
       - label=ready to merge
     merge_conditions: []
     merge_method: merge
