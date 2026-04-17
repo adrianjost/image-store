@@ -52,3 +52,4 @@ priority_rules:
     conditions:
       - label=ready to merge
     priority: 2250
+    allow_checks_interruption: true
